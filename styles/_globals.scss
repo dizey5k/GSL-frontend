@@ -1,0 +1,133 @@
+@import "variables";
+@import "animations";
+@import "utilities";
+
+// Reset / Normalize
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-base;
+  background: $color-bg;
+  color: $color-text-white;
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+}
+
+// Global background glow (from body::before)
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(50px);
+  background: $bg-gradient-page;
+}
+
+// Typography
+a {
+  color: $color-accent;
+  text-decoration: none;
+  transition: color $transition-base;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-heading;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $color-text-white;
+}
+
+p {
+  color: $color-text-body;
+  line-height: 1.6;
+}
+
+code,
+pre {
+  font-family: $font-family-mono;
+}
+
+// Buttons
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+// Scrollbars
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: $color-bg;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2e;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a2e transparent;
+}
+
+// === Responsive breakpoints (mixins) ===
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: $breakpoint-mobile) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (max-width: $breakpoint-tablet) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (max-width: $breakpoint-desktop) {
+      @content;
+    }
+  } @else if $breakpoint == wide {
+    @media (max-width: $breakpoint-wide) {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,236 @@
+// keyframes and animation classes
+
+@keyframes navIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rowIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scaleY(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 214, 0, 0);
+  }
+  50% {
+    box-shadow: 0 0 18px 3px rgba(255, 214, 0, 0.13);
+  }
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes swPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gslHintIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes gslHintPulse {
+  0%,
+  100% {
+    outline-color: rgba(255, 214, 0, 0.45);
+    box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.12);
+  }
+  50% {
+    outline-color: rgba(255, 214, 0, 0.95);
+    box-shadow: 0 0 0 6px rgba(255, 214, 0, 0.28);
+  }
+}
+
+@keyframes gslHintDraw {
+  from {
+    stroke-dashoffset: 120;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes ctorFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Pulse for widget updates
+@keyframes swPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Typing dots for messages
+@keyframes dm-typing-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+// animation utility classes
+.anim {
+  animation: pageIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.navbar-wrapper {
+  animation: navIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.dev-card,
+.leaderboard,
+.lb-hero,
+.guide-hero,
+.guide-content {
+  animation: pageIn 0.44s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.player-row,
+.clan-row,
+.cd,
+.gsl-cmp-result-card,
+.pm-modal,
+.fmodal {
+  animation: cardIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nav-dropdown-panel.open,
+.ndp.open,
+.gn-pop.open,
+.gn-um.open,
+.gn-notif-pop.open {
+  animation: dropIn 0.18s ease both;
+}
+
+.modal-overlay.open .modal,
+.cfg-overlay.open .cfg-modal,
+.mov.on .mw {
+  animation: modalPop 0.28s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.sw-fresh {
+  animation: swPulse 0.35s ease-out both;
+}
+
+.gsl-hint-root.on .gsl-hint-card {
+  animation: gslHintIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.gsl-hint-target {
+  animation: gslHintPulse 2s ease-in-out infinite;
+}
+
+// Tier 1 rows get extra glow
+.player-row[data-tier="1"],
+.clan-row[data-tier="1"] {
+  animation:
+    rowIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both,
+    glowPulse 2.8s ease-in-out 0.5s 3;
+}

@@ -1,0 +1,68 @@
+@import "@/styles/variables";
+
+.footer {
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
+  max-width: $max-width-full;
+  margin: 48px auto 0;
+  padding: 0 24px 32px;
+  font-family: $font-family-base;
+}
+
+.inner {
+  padding: 28px 24px;
+  background: #141416;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #a8a8b3;
+  max-width: 640px;
+  margin: 0 auto 18px;
+
+  a {
+    color: $color-accent;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 18px;
+  margin-bottom: 16px;
+
+  a {
+    font-size: 13px;
+    font-weight: 500;
+    color: #c9c9d1;
+    text-decoration: none;
+    transition: color 0.15s;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.sep {
+  color: rgba(255, 255, 255, 0.18);
+  user-select: none;
+}
+
+.copy {
+  font-size: 11px;
+  color: #7a7a82;
+  letter-spacing: 0.02em;
+}
