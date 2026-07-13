@@ -255,6 +255,13 @@ export const API_PATHS = {
     postMatch: (nick: string) =>
       `${API_BASE}/widget/post-match/${encodeURIComponent(nick)}`,
   },
+
+  home: {
+    banners: `${API_BASE}/home/banners`,
+    news: `${API_BASE}/home/news`,
+    videos: `${API_BASE}/home/videos`,
+    streamers: `${API_BASE}/home/streamers`,
+  },
 } as const
 
 export type ApiPath = typeof API_PATHS

@@ -1,0 +1,33 @@
+@use '@/styles/variables' as *;
+
+.form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.vs {
+  font-size: 18px;
+  font-weight: 800;
+  color: $color-text-gray;
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+
+.button {
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 13px;
+  border: none;
+  border-radius: $radius-pill;
+  background: $color-accent;
+  color: #0c0c0e;
+  cursor: pointer;
+  transition: $transition-base;
+  white-space: nowrap;
+
+  &:hover {
+    background: $color-accent-hover;
+  }
+}

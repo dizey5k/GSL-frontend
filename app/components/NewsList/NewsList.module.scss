@@ -1,0 +1,165 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.news {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  padding: 20px 22px 16px;
+
+  @include respond-to(mobile) {
+    padding: 16px 14px;
+  }
+}
+
+.head {
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: 20px;
+  font-weight: 700;
+  color: $color-text-white;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: $color-text-gray;
+  margin-top: 4px;
+}
+
+.sourceTabs {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.sourceTab {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: $color-text-gray;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid $color-border;
+  border-radius: 20px;
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background 0.15s;
+  appearance: none;
+
+  &:hover {
+    color: $color-text-white;
+  }
+
+  &.active {
+    color: $color-accent;
+    border-color: rgba(255, 214, 0, 0.42);
+    background: rgba(255, 214, 0, 0.14);
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.loading,
+.empty {
+  text-align: center;
+  color: $color-text-gray;
+  font-size: 13px;
+  padding: 24px 0;
+}
+
+.card {
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+  background: #121214;
+  line-height: 0;
+
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 360px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.body {
+  padding: 20px 18px 18px;
+
+  @include respond-to(mobile) {
+    padding: 14px 12px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $color-border;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.source {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #ffd600, #e6a800);
+  color: #0c0c0e;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.date {
+  font-size: 11px;
+  color: $color-text-gray;
+  margin-left: auto;
+}
+
+.titleLink {
+  font-family: $font-family-heading;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: $color-accent;
+  margin-bottom: 10px;
+  display: block;
+  transition: color 0.15s;
+  text-decoration: none;
+
+  &:hover {
+    color: #ffe566;
+  }
+}
+
+.content {
+  font-size: 13px;
+  line-height: 1.65;
+  color: $color-text-body;
+}

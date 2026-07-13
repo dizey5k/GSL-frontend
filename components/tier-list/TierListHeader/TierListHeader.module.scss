@@ -1,0 +1,57 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+  }
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: 24px;
+  font-weight: 800;
+  color: $color-text-white;
+  margin: 0 0 4px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: $color-text-gray;
+  line-height: 1.5;
+  max-width: 560px;
+}
+
+.rulesBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-text-gray;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid $color-border2;
+  border-radius: $radius-pill;
+  cursor: pointer;
+  transition: $transition-base;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    color: $color-text-white;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}

@@ -1,5 +1,5 @@
 import { apiClient } from '../client'
-import { User, ClaimStatus } from '@/types'
+import { User, ClaimStatus, ClaimSource } from '@/types'
 import { API_PATHS } from '../paths'
 
 export const authApi = {
@@ -20,12 +20,12 @@ export const authApi = {
   submitClaim: async (data: {
     player_nickname: string
     proof: string
-    source: 'capt' | 'gangame' | 'both'
+    source: ClaimSource
     server_id: string
   }): Promise<{
     success: boolean
     not_in_rating?: boolean
-    missing_modes?: string[]
+    missing_modes?: ClaimSource[]
   }> => {
     const response = await apiClient.post(API_PATHS.auth.submitClaim, data)
     return response.data

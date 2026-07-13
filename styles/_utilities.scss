@@ -1,3 +1,5 @@
+@use '@/styles/mixins' as *;
+
 // Hidden / accessibility
 .visually-hidden {
   position: absolute !important;

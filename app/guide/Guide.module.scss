@@ -1,0 +1,183 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.container {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+  position: relative;
+  z-index: 1;
+  animation: pageIn 0.48s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+// ===== Hero =====
+.hero {
+  text-align: center;
+  padding: 80px 24px 60px;
+  position: relative;
+  z-index: 1;
+  animation: pageIn 0.44s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both;
+}
+
+.heroTitle {
+  font-family: $font-family-heading;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: $color-gold;
+  margin-bottom: 22px;
+
+  @include respond-to(tablet) {
+    font-size: 34px;
+  }
+}
+
+.heroSub {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: $color-text-white;
+  opacity: 0.9;
+}
+
+.content {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+  position: relative;
+  z-index: 1;
+  animation: pageIn 0.48s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+.sectionHeading {
+  font-size: 16px;
+  font-weight: 700;
+  color: $color-text-white;
+  margin-bottom: 7px;
+}
+
+.sectionDesc {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.6;
+  margin-bottom: 44px;
+  max-width: 560px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 58px;
+
+  @include respond-to(tablet) {
+    padding-left: 46px;
+  }
+}
+
+.step {
+  position: relative;
+  padding-bottom: 64px;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  // Vertical connector line
+  &:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: -39px;
+    top: 38px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 209, 25, 0.22) 0%,
+      transparent 100%
+    );
+
+    @include respond-to(tablet) {
+      left: -32px;
+    }
+  }
+}
+
+.stepMarker {
+  position: absolute;
+  left: -58px;
+  top: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 209, 25, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #ffe063;
+  flex-shrink: 0;
+  user-select: none;
+
+  @include respond-to(tablet) {
+    left: -46px;
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+.stepTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: $color-text-white;
+  line-height: 38px;
+  margin-bottom: 8px;
+
+  @include respond-to(tablet) {
+    line-height: 30px;
+  }
+}
+
+.stepDesc {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1.65;
+  margin-bottom: 20px;
+  max-width: 640px;
+}
+
+.stepImg {
+  width: 450px;
+  max-width: 100%;
+  height: 194px;
+  background: #0d0d0d;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  @include respond-to(tablet) {
+    width: 100%;
+    height: 160px;
+  }
+}
+
+.stepImgPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.12);
+
+  svg {
+    width: 56px;
+    height: 56px;
+    opacity: 0.25;
+  }
+}

@@ -1,0 +1,33 @@
+@use '@/styles/variables' as *;
+
+.results {
+  margin-top: 16px;
+  padding: 16px;
+  background: $color-bg-card2;
+  border-radius: $radius-md;
+  border: 1px solid $color-border;
+  color: $color-text-body;
+  font-size: 14px;
+}
+
+.empty {
+  margin-top: 16px;
+  padding: 24px;
+  text-align: center;
+  color: $color-text-gray;
+  font-size: 14px;
+}
+
+.loading {
+  margin-top: 16px;
+  padding: 24px;
+  text-align: center;
+  color: $color-text-gray;
+}
+
+.error {
+  margin-top: 16px;
+  padding: 24px;
+  text-align: center;
+  color: $color-lose;
+}

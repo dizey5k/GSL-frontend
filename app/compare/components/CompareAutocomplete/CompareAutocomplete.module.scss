@@ -1,0 +1,53 @@
+@use '@/styles/variables' as *;
+
+.wrapper {
+  flex: 1;
+  min-width: 160px;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: $color-text-white;
+  background: $color-bg-input;
+  border: 1px solid $color-border2;
+  border-radius: $radius-sm;
+  outline: none;
+  transition: border-color $transition-base;
+
+  &:focus {
+    border-color: $color-accent-border;
+  }
+
+  &::placeholder {
+    color: $color-text-gray;
+  }
+}
+
+.list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: $color-bg-card2;
+  border: 1px solid $color-border2;
+  border-radius: $radius-sm;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: $z-index-dropdown;
+  box-shadow: $shadow-dropdown;
+}
+
+.item {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: $color-text-body;
+  cursor: pointer;
+  transition: background $transition-base;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}

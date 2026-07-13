@@ -1,0 +1,93 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.searchWrapper {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+
+  svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: $color-text-gray;
+    pointer-events: none;
+  }
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 12px 10px 36px;
+  font-size: 13px;
+  color: $color-text-white;
+  background: $color-bg-card;
+  border: 1px solid $color-border2;
+  border-radius: $radius-sm;
+  outline: none;
+  transition: border-color $transition-base;
+
+  &:focus {
+    border-color: $color-accent-border;
+  }
+
+  &::placeholder {
+    color: $color-text-gray;
+  }
+}
+
+.select {
+  padding: 10px 12px;
+  font-size: 13px;
+  color: $color-text-white;
+  background: $color-bg-card;
+  border: 1px solid $color-border2;
+  border-radius: $radius-sm;
+  outline: none;
+  cursor: pointer;
+  min-width: 140px;
+
+  &:focus {
+    border-color: $color-accent-border;
+  }
+}
+
+.compareBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-accent;
+  background: transparent;
+  border: 1px solid $color-accent;
+  border-radius: $radius-pill;
+  cursor: pointer;
+  transition: $transition-base;
+  white-space: nowrap;
+
+  &:hover {
+    background: $color-accent-dim;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}

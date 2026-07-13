@@ -1,0 +1,29 @@
+@use '@/styles/variables' as *;
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.tab {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-text-gray;
+  background: transparent;
+  border-radius: $radius-sm;
+  border: 1px solid transparent;
+  transition: $transition-base;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-text-white;
+  }
+
+  &.active {
+    color: $color-accent;
+    background: $color-accent-dim;
+    border-color: $color-accent-border;
+  }
+}
