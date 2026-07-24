@@ -2,7 +2,40 @@
 
 import { useCompareStore } from '@/store/compareStore'
 import { useComparePlayers, useCompareFamilies, useDuelCompare } from '@/hooks'
+import { Skeleton } from '@heroui/react'
 import styles from './CompareResults.module.scss'
+
+function CompareSkeleton() {
+  return (
+    <div className={styles.skeletonContainer}>
+      <div className={styles.skeletonRow}>
+        <Skeleton className={styles.skeletonLabel} />
+        <Skeleton className={styles.skeletonValue} />
+        <Skeleton className={styles.skeletonValue} />
+      </div>
+      <div className={styles.skeletonRow}>
+        <Skeleton className={styles.skeletonLabel} />
+        <Skeleton className={styles.skeletonValue} />
+        <Skeleton className={styles.skeletonValue} />
+      </div>
+      <div className={styles.skeletonRow}>
+        <Skeleton className={styles.skeletonLabel} />
+        <Skeleton className={styles.skeletonValue} />
+        <Skeleton className={styles.skeletonValue} />
+      </div>
+      <div className={styles.skeletonRow}>
+        <Skeleton className={styles.skeletonLabel} />
+        <Skeleton className={styles.skeletonValue} />
+        <Skeleton className={styles.skeletonValue} />
+      </div>
+      <div className={styles.skeletonRow}>
+        <Skeleton className={styles.skeletonLabel} />
+        <Skeleton className={styles.skeletonValue} />
+        <Skeleton className={styles.skeletonValue} />
+      </div>
+    </div>
+  )
+}
 
 export default function CompareResults() {
   const { mode, valueA, valueB } = useCompareStore()
@@ -28,7 +61,7 @@ export default function CompareResults() {
   }
 
   if (isLoading) {
-    return <div className={styles.loading}>Загрузка...</div>
+    return <CompareSkeleton />
   }
 
   if (error) {

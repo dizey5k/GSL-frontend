@@ -2,72 +2,114 @@
 
 .tableWrapper {
   background: $color-bg-surface;
-  border-radius: $radius-lg;
   border: 1px solid $color-border;
+  border-radius: $radius-lg;
   overflow: hidden;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+}
 
-  thead {
-    tr {
-      border-bottom: 1px solid $color-border;
-    }
+.tableHead {
+  background: rgba(255, 255, 255, 0.02);
+}
 
-    th {
-      padding: 10px 16px;
-      text-align: left;
-      font-weight: 600;
-      color: $color-text-gray;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      background: rgba(255, 255, 255, 0.02);
-    }
-  }
+.tableHeaderCell {
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color-text-gray;
+  text-align: left;
+  border-bottom: 1px solid $color-border;
+}
 
-  tbody {
-    .row {
-      border-bottom: 1px solid $color-border;
-      cursor: pointer;
-      transition: background $transition-base;
+.tableRow {
+  transition: background $transition-base;
+  border-bottom: 1px solid $color-border;
 
-      &:last-child {
-        border-bottom: none;
-      }
-
-      &:hover {
-        background: $color-bg-card-hover;
-      }
-    }
-
-    td {
-      padding: 10px 16px;
-      vertical-align: middle;
-    }
+  &:last-child {
+    border-bottom: none;
   }
 }
 
-.loading,
+.clickable {
+  cursor: pointer;
+
+  &:hover {
+    background: $color-bg-card-hover;
+  }
+}
+
+.tableCell {
+  padding: 10px 16px;
+  font-size: 13px;
+  color: $color-text-white;
+  vertical-align: middle;
+}
+
+.skeletonCard {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  overflow: hidden;
+}
+
+.skeletonTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.skeletonHeaderCell {
+  padding: 10px 16px;
+  border-bottom: 1px solid $color-border;
+}
+
+.skeletonRow {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.skeletonCell {
+  padding: 10px 16px;
+}
+
+.loadMoreTrigger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  border-top: 1px solid $color-border;
+}
+
 .empty,
 .error {
   padding: 40px 20px;
   text-align: center;
-  color: $color-text-gray;
   font-size: 14px;
+  color: $color-text-gray;
 }
 
 .error {
   color: $color-lose;
 }
 
-.loadMoreTrigger {
-  padding: 12px;
-  text-align: center;
-  font-size: 12px;
-  color: $color-text-gray;
-  border-top: 1px solid $color-border;
+@keyframes skeleton-pulse {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
 }

@@ -31,3 +31,30 @@
   text-align: center;
   color: $color-lose;
 }
+
+.skeletonContainer {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeletonRow {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.skeletonLabel {
+  width: 120px;
+  height: 16px;
+  border-radius: 4px;
+  background: #2a2a30;
+}
+
+.skeletonValue {
+  flex: 1;
+  height: 24px;
+  border-radius: 4px;
+  background: #2a2a30;
+}

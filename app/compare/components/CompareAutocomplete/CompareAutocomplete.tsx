@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { usePlayerSearch, useFamilySearch, useDuelSearch } from '@/hooks'
-import styles from '../Compare.module.scss'
+import styles from './CompareAutocomplete.module.scss'
 
 interface Props {
   mode: 'players' | 'families' | 'gangame'

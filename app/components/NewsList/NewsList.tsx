@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useHomeNews } from '@/hooks'
+import { Skeleton } from '@heroui/react'
 import styles from './NewsList.module.scss'
 import Image from 'next/image'
 
@@ -10,6 +11,25 @@ const SOURCES = [
   { key: 'gsl', label: 'GSL' },
   { key: 'majestic', label: 'Majestic' },
 ]
+
+function NewsSkeleton() {
+  return (
+    <div className={styles.skeletonCard}>
+      <div className={styles.skeletonImage}>
+        <Skeleton className="w-full h-full" />
+      </div>
+      <div className={styles.skeletonBody}>
+        <div className={styles.skeletonHeader}>
+          <Skeleton className={styles.skeletonSource} />
+          <Skeleton className={styles.skeletonDate} />
+        </div>
+        <Skeleton className={styles.skeletonTitle} />
+        <Skeleton className={styles.skeletonContent} />
+        <Skeleton className={styles.skeletonContent} />
+      </div>
+    </div>
+  )
+}
 
 interface Props {
   initialNews: any[]
@@ -43,7 +63,11 @@ export default function NewsList({ initialNews }: Props) {
 
       <div className={styles.list}>
         {isLoading && !initialNews.length && (
-          <div className={styles.loading}>Загрузка...</div>
+          <div className={styles.skeletons}>
+            {Array.from({ length: 4 }).map((_, i) => (
+              <NewsSkeleton key={i} />
+            ))}
+          </div>
         )}
         {!isLoading && displayNews?.length === 0 && (
           <div className={styles.empty}>Новостей нет</div>

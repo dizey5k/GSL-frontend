@@ -11,15 +11,27 @@
 }
 
 .track {
-  position: relative;
   display: flex;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
   user-select: none;
+  cursor: grab;
+  scrollbar-width: none;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .slide {
   flex: 0 0 100%;
+  scroll-snap-align: start;
   min-width: 100%;
   line-height: 0;
 
@@ -85,14 +97,6 @@
     height: 18px;
   }
 
-  &--prev {
-    left: 12px;
-  }
-
-  &--next {
-    right: 12px;
-  }
-
   &[disabled] {
     opacity: 0.25;
     cursor: default;
@@ -102,12 +106,22 @@
   @include respond-to(mobile) {
     width: 30px;
     height: 30px;
-    &--prev {
-      left: 6px;
-    }
-    &--next {
-      right: 6px;
-    }
+  }
+}
+
+.arrowPrev {
+  left: 12px;
+
+  @include respond-to(mobile) {
+    left: 6px;
+  }
+}
+
+.arrowNext {
+  right: 12px;
+
+  @include respond-to(mobile) {
+    right: 6px;
   }
 }
 

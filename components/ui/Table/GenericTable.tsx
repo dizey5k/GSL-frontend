@@ -1,9 +1,10 @@
 'use client'
 
-import { useInView } from 'react-intersection-observer'
 import { useEffect } from 'react'
-import styles from './GenericTable.module.scss'
+import { Skeleton, Spinner } from '@heroui/react'
+import { useInView } from 'react-intersection-observer'
 import { TableProps } from './types'
+import styles from './GenericTable.module.scss'
 
 export function GenericTable<T>({
   columns,
@@ -28,53 +29,93 @@ export function GenericTable<T>({
     }
   }, [inView, hasMore, isFetchingMore, loadMore])
 
-  if (loading && data.length === 0) {
-    return <div className={styles.loading}>Загрузка...</div>
-  }
-
   if (error) {
     return (
       <div className={styles.error}>{error.message || 'Ошибка загрузки'}</div>
     )
   }
 
-  if (data.length === 0) {
+  if (!loading && data.length === 0) {
     return <div className={styles.empty}>{emptyText}</div>
+  }
+
+  if (loading && data.length === 0) {
+    return (
+      <div className={`${styles.skeletonCard} ${className}`}>
+        <table className={styles.skeletonTable}>
+          <thead>
+            <tr>
+              {columns.map((col) => (
+                <th key={col.key} className={styles.skeletonHeaderCell}>
+                  <Skeleton className="h-4 w-3/4 rounded-lg" />
+                </th>
+              ))}
+            </tr>
+          </thead>
+
+          <tbody>
+            {Array.from({ length: 5 }).map((_, index) => (
+              <tr key={index} className={styles.skeletonRow}>
+                {columns.map((col) => (
+                  <td key={col.key} className={styles.skeletonCell}>
+                    <Skeleton className="h-5 w-full rounded-lg" />
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
   }
 
   return (
     <div className={`${styles.tableWrapper} ${className}`}>
       <table className={styles.table}>
-        <thead>
+        <thead className={styles.tableHead}>
           <tr>
             {columns.map((col) => (
               <th
                 key={col.key}
-                className={col.className}
-                style={{ width: col.width }}
+                className={`${styles.tableHeaderCell} ${col.className ?? ''}`}
+                style={
+                  col.width
+                    ? {
+                        width:
+                          typeof col.width === 'number'
+                            ? `${col.width}px`
+                            : col.width,
+                      }
+                    : undefined
+                }
               >
                 {col.header}
               </th>
             ))}
           </tr>
         </thead>
+
         <tbody>
           {data.map((item, index) => {
             const rowKey = keyExtractor(item)
+
             const rowClass =
               typeof rowClassName === 'function'
                 ? rowClassName(item)
-                : rowClassName || ''
+                : (rowClassName ?? '')
 
-            // custom render
             if (renderRow) {
               return (
                 <tr
                   key={rowKey}
-                  className={`${styles.row} ${rowClass}`}
+                  className={`${styles.tableRow} ${rowClass} ${
+                    onRowClick ? styles.clickable : ''
+                  }`}
                   onClick={() => onRowClick?.(item)}
                 >
-                  <td colSpan={columns.length}>{renderRow(item, index)}</td>
+                  <td className={styles.tableCell} colSpan={columns.length}>
+                    {renderRow(item, index)}
+                  </td>
                 </tr>
               )
             }
@@ -82,16 +123,28 @@ export function GenericTable<T>({
             return (
               <tr
                 key={rowKey}
-                className={`${styles.row} ${rowClass}`}
+                className={`${styles.tableRow} ${rowClass} ${
+                  onRowClick ? styles.clickable : ''
+                }`}
                 onClick={() => onRowClick?.(item)}
               >
-                {columns.map((col) => (
-                  <td key={col.key} className={col.className}>
-                    {col.render
-                      ? col.render(item, index)
-                      : (item as any)[col.key]}
-                  </td>
-                ))}
+                {columns.map((col) => {
+                  const value = col.render
+                    ? col.render(item, index)
+                    : String(
+                        Reflect.get(item as object, col.key as PropertyKey) ??
+                          '',
+                      )
+
+                  return (
+                    <td
+                      key={String(col.key)}
+                      className={`${styles.tableCell} ${col.className ?? ''}`}
+                    >
+                      {value}
+                    </td>
+                  )
+                })}
               </tr>
             )
           })}
@@ -100,7 +153,7 @@ export function GenericTable<T>({
 
       {loadMore && hasMore && (
         <div ref={ref} className={styles.loadMoreTrigger}>
-          {isFetchingMore && <span>Загрузка...</span>}
+          {isFetchingMore && <Spinner size="sm" color="warning" />}
         </div>
       )}
     </div>

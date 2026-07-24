@@ -41,4 +41,19 @@ export const pickemApi = {
     const response = await apiClient.get(API_PATHS.pickem.myStats)
     return response.data
   },
+
+  subscribeSSE: (
+    campaignId: number,
+    onMessage: (data: any) => void,
+  ): EventSource => {
+    const url = `/api/pickem/campaigns/${campaignId}/stream`
+    const es = new EventSource(url)
+    es.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data)
+        onMessage(data)
+      } catch (e) {}
+    }
+    return es
+  },
 }

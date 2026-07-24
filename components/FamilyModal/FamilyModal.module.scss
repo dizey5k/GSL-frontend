@@ -1,0 +1,441 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+/* ── Cover hero ── */
+.cover {
+  position: relative;
+  min-height: 130px;
+  background: $color-bg-surface2;
+  border-bottom: 1px solid $color-border-light;
+}
+
+.coverShade {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(
+    105deg,
+    rgba(12, 12, 14, 0.75) 0%,
+    rgba(22, 22, 26, 0.55) 45%,
+    rgba(22, 22, 26, 0.92) 100%
+  );
+  pointer-events: none;
+}
+
+.coverInner {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 22px 18px;
+}
+
+.logo {
+  width: 76px;
+  height: 76px;
+  border-radius: $radius-xl;
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 2px solid rgba(255, 214, 0, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  background: #1f1f23;
+}
+
+.coverId {
+  flex: 1;
+  min-width: 0;
+}
+
+.coverTag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 214, 0, 0.7);
+}
+
+.coverName {
+  font-family: $font-family-heading;
+  font-size: 26px;
+  font-weight: 900;
+  color: $color-text-white;
+  line-height: 1.05;
+  margin: 4px 0 8px;
+  word-break: break-word;
+}
+
+.coverMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  font-size: 12px;
+  color: $color-text-gray;
+
+  b {
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+.eloBlock {
+  flex-shrink: 0;
+  text-align: center;
+  background: rgba(255, 214, 0, 0.08);
+  border: 1px solid rgba(255, 214, 0, 0.2);
+  border-radius: $radius-md;
+  padding: 12px 16px;
+  min-width: 96px;
+}
+
+.eloNum {
+  display: block;
+  font-family: $font-family-heading;
+  font-size: 30px;
+  font-weight: 900;
+  color: $color-accent;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.eloLbl {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 214, 0, 0.6);
+  margin-top: 4px;
+}
+
+/* ── Actions ── */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 11px 22px;
+  border-bottom: 1px solid $color-border-light;
+}
+
+.actionsGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: $radius-sm;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: $color-text-body;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.18s,
+    color 0.18s,
+    border-color 0.18s,
+    transform 0.15s;
+  letter-spacing: 0.02em;
+
+  &:hover {
+    background: rgba(255, 214, 0, 0.1);
+    border-color: rgba(255, 214, 0, 0.28);
+    color: $color-accent;
+    transform: translateY(-1px);
+  }
+}
+
+/* ── Sections ── */
+.sec {
+  padding: 14px 22px;
+  border-bottom: 1px solid $color-border-light;
+}
+
+.secTitle {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-text-gray;
+  margin-bottom: 10px;
+}
+
+/* ── Form ── */
+.formHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.formStreak {
+  font-size: 11px;
+  color: $color-text-gray;
+
+  b {
+    color: $color-accent;
+    font-weight: 700;
+  }
+}
+
+.formDots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.fxDot {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.fxDotW {
+  background: rgba(74, 222, 128, 0.12);
+  color: $color-win;
+  border: 1px solid rgba(74, 222, 128, 0.25);
+}
+
+.fxDotL {
+  background: rgba(248, 113, 113, 0.12);
+  color: $color-lose;
+  border: 1px solid rgba(248, 113, 113, 0.25);
+}
+
+.fxDotN {
+  background: rgba(255, 255, 255, 0.03);
+  color: #555;
+}
+
+/* ── Tabs → panes ── */
+.pane {
+  padding: 14px 22px 20px;
+  min-height: 140px;
+}
+
+/* ── Filters ── */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.filter {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: $radius-pill;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: $color-text-body;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.filterActive {
+  background: $color-accent;
+  color: #0c0c0e;
+  border-color: $color-accent;
+}
+
+/* ── Table wrap ── */
+.tableWrap {
+  background: $color-bg-surface2;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-md;
+  overflow: auto;
+  max-height: 340px;
+  scrollbar-width: thin;
+}
+
+/* ── Match rows ── */
+.matchRow {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.matchBadge {
+  width: 36px;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 5px 0;
+  border-radius: 6px;
+}
+
+.matchWin {
+  background: rgba(74, 222, 128, 0.12);
+  color: $color-win;
+}
+
+.matchLose {
+  background: rgba(248, 113, 113, 0.1);
+  color: $color-lose;
+}
+
+.matchBody {
+  min-width: 0;
+}
+
+.matchVs {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.matchSep {
+  font-size: 9px;
+  color: #555;
+  font-weight: 800;
+}
+
+/* ── Empty / Loading ── */
+.emptyState {
+  text-align: center;
+  padding: 40px 16px;
+  color: $color-text-gray;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ── Link foot ── */
+.linkFoot {
+  display: block;
+  text-align: center;
+  padding: 12px 8px 4px;
+  color: $color-accent;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ── Skeleton ── */
+.skelCover {
+  min-height: 130px;
+  background: $color-bg-surface2;
+  border-bottom: 1px solid $color-border-light;
+}
+
+.skelCoverInner {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 20px 22px;
+}
+
+.skelLogo {
+  width: 76px;
+  height: 76px;
+  border-radius: $radius-xl;
+  flex-shrink: 0;
+}
+
+.skelCoverInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skelTitle {
+  width: 60%;
+  height: 24px;
+  border-radius: $radius-sm;
+}
+
+.skelSub {
+  width: 40%;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.skelDash {
+  padding: 16px 22px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background: $color-bg-surface;
+  border-bottom: 1px solid $color-border-light;
+
+  @include respond-to(mobile) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.skelCard {
+  height: 72px;
+  border-radius: $radius-md;
+}
+
+/* ── Responsive ── */
+@include respond-to(mobile) {
+  .coverInner {
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+
+  .eloBlock {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .eloNum {
+    font-size: 24px;
+  }
+
+  .coverName {
+    font-size: 22px;
+  }
+
+  .actions,
+  .sec,
+  .pane {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

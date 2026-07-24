@@ -149,3 +149,39 @@
     }
   }
 }
+
+.skeletonCard {
+  display: flex;
+  gap: 12px;
+  padding: 8px;
+}
+
+.skeletonThumbnail {
+  width: 72px;
+  height: 48px;
+  border-radius: 4px;
+  background: #2a2a30;
+  flex-shrink: 0;
+}
+
+.skeletonInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.skeletonTitle {
+  width: 85%;
+  height: 14px;
+  border-radius: 4px;
+  background: #2a2a30;
+}
+
+.skeletonAuthor {
+  width: 50%;
+  height: 12px;
+  border-radius: 4px;
+  background: #2a2a30;
+}

@@ -50,6 +50,7 @@
 
   &:hover {
     color: $color-accent;
+    text-decoration: none;
   }
 
   @include respond-to(mobile) {

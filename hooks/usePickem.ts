@@ -51,9 +51,28 @@ export function usePickemLeaderboard(campaignId: number) {
 export function usePickemMyStats() {
   return useQuery({
     queryKey: pickemKeys.myStats(),
-    queryFn: () => pickemApi.getMyStats(),
+    queryFn: async () => {
+      try {
+        const result = await pickemApi.getMyStats()
+        return result
+      } catch (err: unknown) {
+        if (typeof err === 'object' && err !== null && 'response' in err) {
+          const axiosError = err as { response?: { status?: number } }
+          if (axiosError.response?.status === 401) {
+            return null
+          }
+        }
+        throw err
+      }
+    },
     staleTime: 60 * 1000,
-    refetchInterval: 60 * 1000,
+    retry: (failureCount, error) => {
+      if (typeof error === 'object' && error !== null && 'response' in error) {
+        const axiosError = error as { response?: { status?: number } }
+        if (axiosError.response?.status === 401) return false
+      }
+      return failureCount < 2
+    },
   })
 }
 

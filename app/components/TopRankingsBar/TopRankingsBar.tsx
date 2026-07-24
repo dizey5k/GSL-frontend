@@ -2,14 +2,20 @@
 
 import { useState } from 'react'
 import { useUIStore } from '@/store'
+import { Skeleton, Card } from '@heroui/react'
 import styles from './TopRankingsBar.module.scss'
 
 interface Props {
   families: any[]
   players: any[]
+  loading?: boolean
 }
 
-export default function TopRankingsBar({ families, players }: Props) {
+export default function TopRankingsBar({
+  families,
+  players,
+  loading = false,
+}: Props) {
   const [activeTab, setActiveTab] = useState<'families' | 'players'>('families')
   const { openModal } = useUIStore()
 
@@ -23,12 +29,31 @@ export default function TopRankingsBar({ families, players }: Props) {
     }
   }
 
+  if (loading) {
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.tabs}>
+          <span className={styles.label}>GSL — GTA HLTV</span>
+          <div className={styles.tabGroup}>
+            <div className={styles.tab}>Семьи</div>
+            <div className={styles.tab}>Игроки</div>
+          </div>
+        </div>
+        <div className={styles.track}>
+          {Array.from({ length: 10 }).map((_, i) => (
+            <Card key={i} className={styles.skeletonCard}>
+              <Skeleton className={styles.skeletonTopCard} />
+            </Card>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.tabs}>
-        <span className={styles.label}>
-          GSL — GTA HLTV и тир-лист Majestic RP
-        </span>
+        <span className={styles.label}>GSL — GTA HLTV</span>
         <div className={styles.tabGroup}>
           <button
             className={`${styles.tab} ${activeTab === 'families' ? styles.active : ''}`}
@@ -48,15 +73,18 @@ export default function TopRankingsBar({ families, players }: Props) {
         {data.slice(0, 10).map((item, index) => {
           const name = item.family_name || item.player_nickname || '—'
           const elo = item.rating != null ? Math.round(item.rating) : '—'
+          const rank = index + 1
           return (
             <div
               key={item.id || item.player_nickname || index}
-              className={styles.card}
+              className={`${styles.card} ${styles[`rank-${rank}`] || ''}`}
               onClick={() => handleItemClick(item)}
             >
-              <span className={styles.position}>#{index + 1}</span>
-              <span className={styles.pts}>{elo}</span>
-              <span className={styles.name}>{name}</span>
+              <span className={styles.rankNum}>#{rank}</span>
+              <div className={styles.eloWrap}>
+                <span className={styles.eloValue}>{elo}</span>
+              </div>
+              <span className={styles.cardName}>{name}</span>
             </div>
           )
         })}

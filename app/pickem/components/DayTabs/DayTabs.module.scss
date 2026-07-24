@@ -1,0 +1,11 @@
+.tabsRoot [role='tablist'] {
+  gap: 1rem;
+}
+
+.tabsRoot [role='tab'] {
+  color: #9ca3af;
+}
+
+.tabsRoot [role='tab'][data-selected] {
+  color: #facc15;
+}

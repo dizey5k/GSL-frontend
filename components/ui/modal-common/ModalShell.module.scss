@@ -1,0 +1,101 @@
+@use '@/styles/variables' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 99999;
+  display: flex;
+  padding: 16px 10px;
+  overflow-y: auto;
+  animation: ovIn 0.2s ease;
+}
+
+@keyframes ovIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  width: 100%;
+  max-width: 920px;
+  margin: auto;
+  background: $color-bg-surface;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-lg;
+  position: relative;
+  overflow: hidden;
+  max-height: min(92vh, 800px);
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  animation: modalIn 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 50;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(12, 12, 14, 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: $radius-md;
+  color: #888;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: $transition-fast;
+
+  &:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 214, 0, 0.35) transparent;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 3px;
+    flex-shrink: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #ffd600 35%,
+      #ffe566 50%,
+      #ffd600 65%,
+      transparent 100%
+    );
+    opacity: 0.85;
+  }
+}

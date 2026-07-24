@@ -1,6 +1,6 @@
 'use client'
 
-import { GenericTable } from '@/components/ui/Table'
+import { Column, GenericTable } from '@/components/ui/Table'
 import { TierListItem } from '../types'
 import TierListRow from '../TierListRow/TierListRow'
 import styles from './TierListTable.module.scss'
@@ -24,7 +24,7 @@ export default function TierListTable({
   isFetchingMore,
   onRowClick,
 }: Props) {
-  const columns = [
+  const columns: Column<TierListItem>[] = [
     {
       key: 'row',
       header: '',

@@ -1,8 +1,3 @@
-export type PickemPhase = 'pre_event' | 'daily' | 'finale'
-export type PickemAnswerType = 'radio' | 'dropdown' | 'number'
-export type PickemStatus = 'draft' | 'open' | 'locked' | 'resolved'
-export type PickemCampaignStatus = 'draft' | 'published' | 'archived'
-
 export interface PickemCampaign {
   id: number
   slug: string
@@ -11,7 +6,7 @@ export interface PickemCampaign {
   description?: string
   hero_image_url?: string
   server_id?: number
-  status: PickemCampaignStatus
+  status: 'draft' | 'published' | 'archived'
   starts_at?: string
   ends_at?: string
   day_count: number
@@ -38,15 +33,15 @@ export interface PickemOption {
 
 export interface PickemQuestion {
   id: number
-  phase: PickemPhase
+  phase: 'pre_event' | 'daily' | 'finale'
   day_number: number
   title: string
   description?: string
-  answer_type: PickemAnswerType
+  answer_type: 'radio' | 'dropdown' | 'number'
   points: number
   points_multiplier: number
   points_effective: number
-  status: PickemStatus
+  status: 'draft' | 'open' | 'locked' | 'resolved'
   opens_at?: string
   closes_at?: string
   sort_order: number
@@ -94,3 +89,8 @@ export interface PickemLeaderboardEntry {
   player_nickname: string | null
   avatar_url: string | null
 }
+
+export type PickemPhase = 'pre_event' | 'daily' | 'finale'
+export type PickemAnswerType = 'radio' | 'dropdown' | 'number'
+export type PickemStatus = 'draft' | 'open' | 'locked' | 'resolved'
+export type PickemCampaignStatus = 'draft' | 'published' | 'archived'

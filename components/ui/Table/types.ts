@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 export interface Column<T> {
-  key: string
+  key: Extract<keyof T, string | number> | string
   header: string | ReactNode
   render?: (item: T, index: number) => ReactNode
   className?: string

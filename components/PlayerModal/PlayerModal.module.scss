@@ -1,0 +1,996 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: $z-index-overlay;
+  display: flex;
+  padding: 16px 10px;
+  overflow-y: auto;
+  animation: ovIn 0.2s ease;
+}
+
+@keyframes ovIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  width: 100%;
+  max-width: 920px;
+  z-index: 99999;
+  margin: auto;
+  background: $color-bg-surface;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-lg;
+  position: relative;
+  overflow: hidden;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  animation: modalIn 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  max-height: 92vh;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 214, 0, 0.35) transparent;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 3px;
+    flex-shrink: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #ffd600 35%,
+      #ffe566 50%,
+      #ffd600 65%,
+      transparent 100%
+    );
+    opacity: 0.85;
+  }
+}
+
+/* ── Close button ── */
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 50;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(12, 12, 14, 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: $radius-md;
+  color: #888;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: $transition-fast;
+
+  &:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  padding: 20px 24px 16px;
+  background:
+    radial-gradient(
+      ellipse 420px 180px at 12% 0%,
+      rgba(255, 214, 0, 0.08),
+      transparent 70%
+    ),
+    $color-bg-surface2;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: center;
+  border-bottom: 1px solid $color-border-light;
+}
+
+.heroLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: $radius-xl;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 214, 0, 0.18);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.35);
+  background: #1f1f23;
+}
+
+.heroMeta {
+  min-width: 0;
+}
+
+.eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  color: $color-text-gray;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.heroName {
+  font-family: $font-family-heading;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: $color-text-white;
+  line-height: 1.05;
+  word-break: break-word;
+}
+
+.subline {
+  font-size: 12px;
+  color: $color-text-gray;
+  margin-top: 6px;
+  line-height: 1.45;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+
+  b {
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+.sublineDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #3a3a40;
+  flex-shrink: 0;
+}
+
+.heroRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.heroMetrics {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.heroMetric {
+  position: relative;
+  min-width: 72px;
+  padding: 8px 10px 7px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9px;
+  text-align: right;
+
+  &.metricGold {
+    border-color: rgba(255, 214, 0, 0.22);
+    background: rgba(255, 214, 0, 0.06);
+  }
+}
+
+.heroMetricBadge {
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.heroMetricVal {
+  display: block;
+  font-family: $font-family-heading;
+  font-size: 17px;
+  font-weight: 800;
+  color: $color-text-white;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+
+  .metricGold & {
+    color: $color-accent;
+  }
+}
+
+.heroMetricLbl {
+  display: block;
+  margin-top: 3px;
+  font-size: 8px;
+  font-weight: 600;
+  color: $color-text-gray;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.rating {
+  background: rgba(255, 214, 0, 0.06);
+  border: 1px solid rgba(255, 214, 0, 0.14);
+  padding: 10px 16px;
+  border-radius: $radius-md;
+  text-align: right;
+}
+
+.ratingNum {
+  font-family: $font-family-heading;
+  font-size: 30px;
+  font-weight: 900;
+  color: $color-accent;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ratingLbl {
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255, 214, 0, 0.7);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ── Actions row ── */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 24px;
+  border-bottom: 1px solid $color-border-light;
+  background: $color-bg-surface;
+}
+
+.actionsGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── Action button ── */
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: $radius-sm;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: $color-text-body;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.18s,
+    color 0.18s,
+    border-color 0.18s,
+    transform 0.15s;
+  letter-spacing: 0.02em;
+
+  &:hover {
+    background: rgba(255, 214, 0, 0.1);
+    border-color: rgba(255, 214, 0, 0.28);
+    color: $color-accent;
+    transform: translateY(-1px);
+  }
+}
+
+/* ── Socials ── */
+.socials {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: $radius-md;
+  color: $color-text-body;
+  transition:
+    background 0.18s,
+    color 0.18s,
+    border-color 0.18s,
+    transform 0.15s;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    background: rgba(255, 214, 0, 0.1);
+    border-color: rgba(255, 214, 0, 0.28);
+    color: $color-accent;
+    transform: translateY(-1px);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.socialOff {
+    opacity: 0.25;
+    pointer-events: none;
+  }
+}
+
+/* ── Rank badge ── */
+.rankBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-accent;
+  background: rgba(255, 214, 0, 0.1);
+  border: 1px solid rgba(255, 214, 0, 0.22);
+  padding: 3px 9px;
+  border-radius: $radius-pill;
+  margin-bottom: 6px;
+}
+
+/* ── Verified badge ── */
+.verifiedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 7px 12px;
+  border-radius: $radius-pill;
+  background: rgba(74, 222, 128, 0.1);
+  color: $color-win;
+  border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+/* ── Level wrap ── */
+.levelWrap {
+  padding: 0 24px 10px;
+  position: relative;
+  z-index: 5;
+  overflow: visible;
+  border-bottom: 1px solid $color-border-light;
+  background: $color-bg-surface;
+}
+
+/* ── Dashboard ── */
+.dashboard {
+  padding: 16px 24px 6px;
+  border-bottom: 1px solid $color-border-light;
+  background: $color-bg-surface;
+}
+
+.sectionLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: $color-text-gray;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+
+  @include respond-to(mobile) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.statCard {
+  position: relative;
+  background: $color-bg-surface2;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-md;
+  padding: 14px 16px 12px;
+  min-width: 0;
+  transition:
+    border-color 0.18s,
+    transform 0.18s,
+    box-shadow 0.18s;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  }
+
+  &.cardGold {
+    border-color: rgba(255, 214, 0, 0.12);
+    background: rgba(255, 214, 0, 0.03);
+  }
+
+  &.cardWin {
+    .statVal {
+      color: $color-win;
+    }
+  }
+  &.cardLose {
+    .statVal {
+      color: $color-lose;
+    }
+  }
+}
+
+.statBadge {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.28);
+  text-transform: uppercase;
+}
+
+.statLbl {
+  font-size: 10px;
+  font-weight: 600;
+  color: $color-text-gray;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.statVal {
+  font-family: $font-family-heading;
+  font-size: 22px;
+  font-weight: 800;
+  color: $color-text-white;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+
+  .cardGold & {
+    color: $color-accent;
+  }
+}
+
+.statCtx {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  color: $color-text-gray;
+  line-height: 1.35;
+}
+
+/* ── Trophies ── */
+.trophiesWrap {
+  padding: 14px 24px 4px;
+  border-bottom: 1px solid $color-border-light;
+  background: $color-bg-surface;
+}
+
+.trophiesH {
+  font-size: 10px;
+  font-weight: 600;
+  color: $color-text-gray;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+
+  svg {
+    color: $color-accent;
+    width: 11px;
+    height: 11px;
+  }
+}
+
+/* ── Tabs ── */
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 14px 20px 0;
+  border-bottom: 1px solid $color-border-light;
+  background: $color-bg-surface;
+}
+
+.tab {
+  padding: 10px 14px;
+  font-family: $font-family-base;
+  font-size: 12px;
+  font-weight: 700;
+  color: $color-text-gray;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background 0.15s;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  &:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  &.tabActive {
+    color: $color-accent;
+    border-bottom-color: $color-accent;
+    background: rgba(255, 214, 0, 0.04);
+    border-radius: 8px 8px 0 0;
+  }
+}
+
+/* ── Panes ── */
+.pane {
+  padding: 0 20px 22px;
+  min-height: 200px;
+  flex: 1;
+  background: $color-bg-surface;
+}
+
+.paneContent {
+  margin-top: 12px;
+}
+
+/* ── Matches panel ── */
+.matchesPanel {
+  background: $color-bg-surface2;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  max-height: 360px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 214, 0, 0.3) transparent;
+}
+
+/* ── Stat chip (in hero subline) ── */
+.statChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: $color-text-gray;
+
+  b {
+    color: #fff;
+    font-weight: 700;
+  }
+}
+
+/* ── Form chart block ── */
+.formChartBlock {
+  padding: 0 24px 12px;
+  border-bottom: 1px solid $color-border-light;
+  background: $color-bg-surface;
+}
+
+.formChartInner {
+  padding: 12px 0 0;
+  border-bottom: none;
+  background: transparent;
+}
+
+/* ── Capt strip (gangame modal) ── */
+.captStrip {
+  margin: 0 24px 12px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: $radius-md;
+  background: #121214;
+}
+
+.captStripHd {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-text-gray;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $color-win;
+    flex-shrink: 0;
+  }
+}
+
+.captStrip .statGrid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ── Empty / loading ── */
+.emptyState,
+.loadingState {
+  color: $color-text-gray;
+  font-size: 12px;
+  text-align: center;
+  padding: 36px 16px;
+  line-height: 1.5;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2.5px solid rgba(255, 255, 255, 0.1);
+  border-top-color: $color-accent;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Form dots (inline in stat card) ── */
+.formDots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.formDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.dotWin {
+  background: rgba(74, 222, 128, 0.2);
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+.dotLose {
+  background: rgba(248, 113, 113, 0.15);
+  border: 1px solid rgba(248, 113, 113, 0.28);
+}
+
+.formEmpty {
+  font-size: 10px;
+  color: $color-text-gray;
+}
+
+/* ── Skeleton ── */
+.skeletonBody {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #ffd600 35%,
+      #ffe566 50%,
+      #ffd600 65%,
+      transparent 100%
+    );
+    opacity: 0.4;
+  }
+}
+
+.skelHero {
+  padding: 20px 24px 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: $color-bg-surface2;
+  border-bottom: 1px solid $color-border-light;
+}
+
+.skelAv {
+  width: 72px;
+  height: 72px;
+  border-radius: $radius-xl;
+  flex-shrink: 0;
+}
+
+.skelHeroInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skelTitle {
+  width: 60%;
+  height: 24px;
+  border-radius: $radius-sm;
+}
+
+.skelSub {
+  width: 40%;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.skelDash {
+  padding: 16px 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  background: $color-bg-surface;
+  border-bottom: 1px solid $color-border-light;
+
+  @include respond-to(mobile) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.skelCard {
+  height: 72px;
+  border-radius: $radius-md;
+}
+
+/* ── Match row (fallback) ── */
+.matchRow {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.15s;
+  cursor: pointer;
+
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.matchBadge {
+  width: 52px;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 6px 0;
+  border-radius: 7px;
+
+  &.matchWin {
+    background: rgba(74, 222, 128, 0.12);
+    color: $color-win;
+  }
+  &.matchLose {
+    background: rgba(248, 113, 113, 0.1);
+    color: $color-lose;
+  }
+  &.matchNeu {
+    background: rgba(255, 255, 255, 0.06);
+    color: #888;
+  }
+}
+
+.matchBody {
+  min-width: 0;
+}
+
+.matchVs {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.matchSep {
+  font-size: 9px;
+  color: #555;
+  font-weight: 800;
+}
+
+.matchChips {
+  display: flex;
+  gap: 4px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: $radius-pill;
+  white-space: nowrap;
+
+  &.chipWin {
+    background: rgba(74, 222, 128, 0.12);
+    color: $color-win;
+  }
+  &.chipLose {
+    background: rgba(248, 113, 113, 0.1);
+    color: $color-lose;
+  }
+  &.chipNeu {
+    background: rgba(255, 255, 255, 0.06);
+    color: #888;
+  }
+}
+
+/* ── Weapons ── */
+.weaponRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.weaponName {
+  flex: 1;
+  font-size: 13px;
+  color: #f0f0f2;
+  text-transform: capitalize;
+}
+
+.weaponStat {
+  font-size: 11px;
+  color: $color-text-gray;
+}
+
+.weaponWr {
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 44px;
+  text-align: right;
+
+  &.wrGood {
+    color: $color-win;
+  }
+  &.wrBad {
+    color: $color-lose;
+  }
+}
+
+.weaponBar {
+  width: 60px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.weaponBarFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+/* ── Link foot ── */
+.linkFoot {
+  display: block;
+  text-align: center;
+  padding: 12px 8px 4px;
+  color: $color-accent;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ── Responsive ── */
+@include respond-to(mobile) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 18px 16px 14px;
+  }
+
+  .heroRight {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .heroName {
+    font-size: 22px;
+  }
+  .ratingNum {
+    font-size: 26px;
+  }
+
+  .actions,
+  .dashboard,
+  .levelWrap,
+  .trophiesWrap,
+  .pane {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .captStrip {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .avatar {
+    width: 64px;
+    height: 64px;
+  }
+  .matchRow {
+    grid-template-columns: 44px 1fr;
+  }
+}

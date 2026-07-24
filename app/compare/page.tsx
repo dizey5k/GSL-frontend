@@ -6,8 +6,7 @@ import { useCompareStore } from '@/store/compareStore'
 import CompareTabs from './components/CompareTabs/CompareTabs'
 import CompareForm from './components/CompareForm/CompareForm'
 import CompareResults from './components/CompareResults/CompareResults'
-import styles from './ComparePage.module.scss'
-export { metadata } from './metadata'
+import styles from './Compare.module.scss'
 
 export default function ComparePage() {
   const searchParams = useSearchParams()

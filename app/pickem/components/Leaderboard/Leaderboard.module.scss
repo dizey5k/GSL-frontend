@@ -1,0 +1,46 @@
+@use '@/styles/variables' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: $color-text-white;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.points {
+  text-align: right;
+  font-weight: 700;
+  color: $color-orange;
+}
+
+.right {
+  text-align: right;
+}
+
+.skeletonList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton {
+  width: 100%;
+  height: 36px;
+  border-radius: $radius-md;
+}

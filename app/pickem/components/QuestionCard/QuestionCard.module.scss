@@ -1,0 +1,123 @@
+@use '@/styles/variables' as *;
+
+.card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: 1rem;
+}
+
+.title {
+  color: $color-text-white;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.description {
+  color: $color-text-gray;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.points {
+  color: $color-accent;
+  font-weight: 500;
+}
+
+.resolved {
+  color: #4ade80;
+}
+
+.locked {
+  color: $color-text-gray;
+}
+
+.open {
+  color: #60a5fa;
+}
+
+.closesAt {
+  color: $color-text-gray;
+}
+
+.correctAnswer {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background: rgba(74, 222, 128, 0.1);
+  border-radius: $radius-sm;
+  color: #4ade80;
+}
+
+.form {
+  margin-top: 1rem;
+}
+
+.numberInput {
+  max-width: 200px;
+}
+
+.radioGroup {
+  margin-top: 0.5rem;
+}
+
+.radioItem {
+  margin-bottom: 0.5rem;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.percentage {
+  font-size: 0.75rem;
+  color: $color-text-gray;
+  margin-left: 1rem;
+}
+
+.correctMark {
+  color: #4ade80;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.userPick {
+  color: $color-accent;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.submitBtn {
+  margin-top: 1rem;
+}
+
+.myPickResult {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: $color-text-body;
+}
+
+.correct {
+  color: #4ade80;
+  margin-left: 0.5rem;
+}
+
+.incorrect {
+  color: #f87171;
+  margin-left: 0.5rem;
+}
+
+.earnedPoints {
+  color: $color-accent;
+  margin-left: 0.5rem;
+}

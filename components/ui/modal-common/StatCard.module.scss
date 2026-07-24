@@ -1,0 +1,92 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+
+  @include respond-to(mobile) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  background: $color-bg-surface2;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-md;
+  padding: 14px 16px 12px;
+  min-width: 0;
+  transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.28);
+  text-transform: uppercase;
+}
+
+.lbl {
+  font-size: 10px;
+  font-weight: 600;
+  color: $color-text-gray;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.val {
+  font-family: $font-family-heading;
+  font-size: 22px;
+  font-weight: 800;
+  color: $color-text-white;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ctx {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  color: $color-text-gray;
+  line-height: 1.35;
+}
+
+.sub {
+  margin-top: 4px;
+}
+
+/* Variants */
+.cardGold {
+  border-color: rgba(255, 214, 0, 0.12);
+  background: rgba(255, 214, 0, 0.03);
+
+  .val { color: $color-accent; }
+}
+
+.cardWin .val { color: $color-win; }
+.cardLose .val { color: $color-lose; }
+
+.cardAccent {
+  border-color: rgba(255, 214, 0, 0.12);
+  background: rgba(255, 214, 0, 0.03);
+
+  .val { color: $color-accent; }
+}
+
+@include respond-to(mobile) {
+  .card { padding: 10px 12px; }
+  .val { font-size: 18px; }
+}

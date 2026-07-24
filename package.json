@@ -9,6 +9,8 @@
     "lint": "bun run --bun next lint"
   },
   "dependencies": {
+    "@heroui/react": "^3.2.2",
+    "@heroui/styles": "^3.2.2",
     "@tanstack/react-query": "^5.101.2",
     "axios": "^1.18.1",
     "framer-motion": "^12.42.2",
@@ -16,7 +18,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.81.0",
+    "react-intersection-observer": "^10.1.0",
     "sass": "^1.101.0",
+    "sonner": "^2.0.7",
     "zustand": "^5.0.14"
   },
   "devDependencies": {
@@ -24,10 +28,12 @@
     "@types/node": "^26.1.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.5.4",
     "concurrently": "^8.2.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
-    "tailwindcss": "^4",
+    "postcss": "^8.5.20",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5"
   },
   "ignoreScripts": [

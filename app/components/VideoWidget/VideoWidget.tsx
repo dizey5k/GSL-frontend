@@ -3,7 +3,20 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { useLiveStreams, useHomeVideos } from '@/hooks'
+import { Skeleton } from '@heroui/react'
 import styles from './VideoWidget.module.scss'
+
+function VideoSkeleton() {
+  return (
+    <div className={styles.skeletonCard}>
+      <Skeleton className={styles.skeletonThumbnail} />
+      <div className={styles.skeletonInfo}>
+        <Skeleton className={styles.skeletonTitle} />
+        <Skeleton className={styles.skeletonAuthor} />
+      </div>
+    </div>
+  )
+}
 
 export default function VideoWidget() {
   const [activeTab, setActiveTab] = useState<'streams' | 'videos'>('streams')
@@ -33,7 +46,13 @@ export default function VideoWidget() {
       </div>
 
       <div className={styles.content}>
-        {isLoading && <div className={styles.loading}>Загрузка...</div>}
+        {isLoading && (
+          <div className={styles.list}>
+            {Array.from({ length: 4 }).map((_, i) => (
+              <VideoSkeleton key={i} />
+            ))}
+          </div>
+        )}
         {!isLoading && items?.length === 0 && (
           <div className={styles.empty}>Нет записей</div>
         )}
